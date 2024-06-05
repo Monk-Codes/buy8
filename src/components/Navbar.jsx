@@ -1,37 +1,52 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 const Navbar = () => {
+ //get user from local storage
+ const user = JSON.parse(localStorage.getItem("users"));
+ //navigate
+ const navigate = useNavigate();
+ //logout
+ const logout = () => {
+  localStorage.clear("users");
+  navigate("/login");
+ };
+
  // navList Data
  const navList = (
-  <ul className="flex space-x-2 text-amber-300 sm:font-sm md:font-medium sm:border-x-2 border-amber-600 lg:border-none px-5">
+  <ul className="flex space-x-1 text-amber-300 font-sm md:font-medium text-nowrap border-amber-600 lg:border-none self-center">
    {/* Home */}
-   <li className="hover:bg-amber-500 hover:text-black focus:bg-amber-500 focus:text-black active:bg-amber-500 active:text-black transition-all rounded-md duration-300 transform hover:scale-105 focus:scale-105 active:scale-105">
+   <li className="navli">
     <Link to={"/"}>Home</Link>
    </li>
 
    {/* All Products */}
-   <li className="hover:bg-amber-500 hover:text-black focus:bg-amber-500 focus:text-black active:bg-amber-500 active:text-black transition-all rounded-md duration-300 transform hover:scale-105 focus:scale-105 active:scale-105">
+   <li className="navli">
     <Link to={"/allproduct"}>All Products</Link>
    </li>
 
    {/* Signup */}
-   <li className="hover:bg-amber-500 hover:text-black focus:bg-amber-500 focus:text-black active:bg-amber-500 active:text-black transition-all rounded-md duration-300 transform hover:scale-105 focus:scale-105 active:scale-105">
+   <li className="navli">
     <Link to={"/signup"}>Signup</Link>
    </li>
 
    {/* User */}
-   <li className="hover:bg-amber-500 hover:text-black focus:bg-amber-500 focus:text-black active:bg-amber-500 active:text-black transition-all rounded-md duration-300 transform hover:scale-105 focus:scale-105 active:scale-105">
-    <Link to={"/dashboard"}>My Orders</Link> {/* User-Dashboard */}
+   <li className="navli">
+    <Link to={"/dashboard"}>My Orders</Link>
    </li>
 
    {/* Admin */}
-   <li className="hover:bg-amber-500 hover:text-black focus:bg-amber-500 focus:text-black active:bg-amber-500 active:text-black transition-all rounded-md duration-300 transform hover:scale-105 focus:scale-105 active:scale-105">
-    <Link to={"/admindashboard"}>Admin</Link>
+   <li className="navli">
+    <Link to={"/admin-dashboard"}>Admin</Link>
    </li>
-
+   {/* Logout */}
+   {user && (
+    <li className="cursor-pointer navli" onClick={logout}>
+     Logout
+    </li>
+   )}
    {/* Cart */}
-   <li className="hover:bg-amber-500 hover:text-black focus:bg-amber-500 focus:text-black active:bg-amber-500 active:text-black transition-all rounded-md duration-300 transform hover:scale-105 focus:scale-105 active:scale-105">
+   <li className="navli">
     <Link to={"/cart"}>Cart(0)</Link>
    </li>
   </ul>
@@ -48,7 +63,7 @@ const Navbar = () => {
     </div>
 
     {/* right */}
-    <div className="right flex justify-center mb-4 lg:mb-0">{navList}</div>
+    <div className="right flex justify-center  mb-4 lg:mb-0">{navList}</div>
 
     {/* Search Bar */}
     <SearchBar />

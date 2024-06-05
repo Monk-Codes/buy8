@@ -1,8 +1,74 @@
+import { useContext, useState } from "react";
+import MyContext from "../context/MyContext";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { auth, fireDB } from "../firebase/FirebaseConfig";
+import Loader from "../components/Loader";
+
 const Signup = () => {
+ const context = useContext(MyContext);
+ const { loading, setLoading } = context;
+ const navigate = useNavigate();
+
+ // SIGNUP STATE
+ const [userSignup, setUserSignup] = useState({
+  name: "",
+  email: "",
+  password: "",
+  role: "user",
+ });
+
+ // SIGNUP FUNCTION
+ const userSignupFunction = async () => {
+  // validation
+  if (userSignup.name === "" || userSignup.email === "" || userSignup.password === "") {
+   toast.error("All fields are required");
+   return; // Early return if validation fails
+  }
+
+  setLoading(true);
+
+  try {
+   const users = await createUserWithEmailAndPassword(auth, userSignup.email, userSignup.password);
+   // CREATE USER OBJECT
+   const user = {
+    name: userSignup.name,
+    email: users.user.email,
+    uid: users.user.uid,
+    role: userSignup.role,
+    time: Timestamp.now(),
+    date: new Date().toLocaleString("en-US", {
+     month: "short",
+     day: "2-digit",
+     year: "numeric",
+    }),
+   };
+   // CREATE USER INTERFACE
+   const userReference = collection(fireDB, "user");
+   // ADD USER DETAIL
+   await addDoc(userReference, user);
+
+   setUserSignup({
+    name: "",
+    email: "",
+    password: "",
+   });
+   toast.success("SignUp successfully");
+   setLoading(false);
+   navigate("/login");
+  } catch (error) {
+   toast.error(error.message);
+   setLoading(false);
+  }
+ };
+
  return (
-  <section className="bg-gray-700 min-h-screen flex items-center justify-center px-12 ">
+  <section className="bg-gray-700 min-h-screen flex items-center justify-center px-12">
+   {loading && <Loader />}
    {/* <!-- login container --> */}
-   <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl  items-center py-5">
+   <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl items-center py-5">
     {/* <!-- form --> */}
     <div className="md:w-1/2 px-8 md:px-16">
      <h2 className="font-bold text-2xl text-[#002D74]">SignUp</h2>
@@ -24,37 +90,68 @@ const Signup = () => {
       <p className="text-center text-sm">OR</p>
       <hr className="border-gray-400" />
      </div>
-     <form action="" className="flex flex-col gap-4">
-      <input className="p-2 mt-8 rounded-xl border" type="email" name="email" placeholder="Email" />
+     <div className="flex flex-col gap-4">
+      {/* Input 1 */}
+      <input
+       className="p-2 mt-8 rounded-xl border"
+       type="text"
+       name="name"
+       placeholder="Full Name"
+       minLength={6}
+       value={userSignup.name}
+       onChange={(e) => {
+        setUserSignup({ ...userSignup, name: e.target.value });
+       }}
+      />
+      {/* Input 2 */}
+      <input
+       className="p-2 rounded-xl border"
+       type="email"
+       name="email"
+       placeholder="Email"
+       value={userSignup.email}
+       onChange={(e) => {
+        setUserSignup({ ...userSignup, email: e.target.value });
+       }}
+      />
       <div className="relative">
-       <input className="p-2 rounded-xl border w-full" type="password" name="password" placeholder="Password" />
+       {/* Input 3 */}
+       <input
+        className="p-2 rounded-xl border w-full"
+        type="password"
+        name="password"
+        placeholder="Password"
+        minLength={6}
+        value={userSignup.password}
+        onChange={(e) => {
+         setUserSignup({ ...userSignup, password: e.target.value });
+        }}
+       />
        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" className="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2" viewBox="0 0 16 16">
         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
        </svg>
       </div>
-      <button className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">SignUp</button>
-     </form>
-
-     <div className="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
-      <a href="#">Forgot your password?</a>
+      <button className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300 cursor-pointer" type="button" onClick={userSignupFunction}>
+       SignUp
+      </button>
      </div>
 
-     <p className="mt-6 text-xs text-gray-600 text-center">
-      I agree to abide by Buy8's
-      <a href="#" className="border-b border-gray-500 border-dotted">
-       Terms of Service
-      </a>
-      and its
-      <a href="#" className="border-b border-gray-500 border-dotted">
-       Privacy Policy
-      </a>
-     </p>
+     <div className="mt-4 text-xs border-b border-[#002D74] p-1 text-[#002D74]">
+      <Link to={"/help"} className="p-1 cursor-pointer">
+       Forgot your password?
+      </Link>
+      <Link to={"/login"} className="p-1 cursor-pointer">
+       Have an account
+      </Link>
+     </div>
+
+     <p className="mt-6 text-xs text-gray-600 text-center">I agree to abide by Buy8's Terms of Service & User Policy</p>
     </div>
 
     {/* <!-- image --> */}
     <div className="md:block hidden w-1/2">
-     <img className="rounded-2xl" src="src/assets/signUp.gif" />
+     <img className="rounded-xl" src="src/assets/signUp.gif" />
     </div>
    </div>
   </section>

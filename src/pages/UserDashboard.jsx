@@ -15,11 +15,11 @@ const products = [
 const UserDashboard = () => {
  return (
   <Layout>
-   <div className=" container mx-auto px-4 py-5 lg:py-8">
+   <div className=" container mx-auto px-2 py-5 lg:py-8">
     {/* Top  */}
     <div className="top ">
      {/* main  */}
-     <div className=" bg-pink-50 py-5 rounded-xl border border-pink-100">
+     <div className=" bg-gray-200 py-5 rounded-2xl border border-amber-400">
       {/* image  */}
       <div className="flex justify-center">
        <img src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png" alt="" />

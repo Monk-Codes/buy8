@@ -99,12 +99,7 @@ const HomePageProductCard = () => {
            <h1 className="title-font text-lg font-medium text-gray-700 mb-3">{title.substring(0, 25)}</h1>
            <h1 className="title-font text-lg font-medium text-amber-500 mb-3">₹{price}</h1>
            <div className="flex justify-center ">
-            <button
-             className="bg-slate-500 hover:bg-amber-400 w-full text-white py-[4px] rounded-2xl font-bold focus:outline-none focus:ring focus:ring-offset-2 focus:ring-amber-500"
-             onFocus={() => console.log("Button Focused!")} // Optional: Handle focus for accessibility
-            >
-             Add To Cart
-            </button>
+            <button className="bg-slate-500 hover:bg-amber-400 w-full text-white py-[4px] rounded-2xl font-bold focus:outline-none focus:ring focus:ring-offset-2 focus:ring-amber-500">Add To Cart</button>
            </div>
           </div>
          </div>
