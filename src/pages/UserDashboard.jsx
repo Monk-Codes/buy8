@@ -13,6 +13,7 @@ const products = [
 ];
 
 const UserDashboard = () => {
+ const user = JSON.parse(localStorage.getItem("users"));
  return (
   <Layout>
    <div className=" container mx-auto px-2 py-5 lg:py-8">
@@ -22,15 +23,29 @@ const UserDashboard = () => {
      <div className=" bg-gray-200 py-5 rounded-2xl border border-amber-400">
       {/* image  */}
       <div className="flex justify-center">
-       <img src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png" alt="" />
+       <img src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png" alt="image" />
       </div>
       {/* text  */}
       <div className="">
+       {/* name */}
        <h1 className=" text-center text-lg">
-        <span className=" font-bold">Name :</span> Admin
+        <span className=" font-bold">Name :</span>
+        {user?.name}
        </h1>
+       {/* email */}
        <h1 className=" text-center text-lg">
-        <span className=" font-bold">Email :</span> test@gmail.com
+        <span className=" font-bold">Email :</span>
+        {user?.email}
+       </h1>
+       {/* Date  */}
+       <h1 className=" text-center text-lg">
+        <span className=" font-bold">Date : </span>
+        {user?.date}
+       </h1>
+       {/* Role  */}
+       <h1 className=" text-center text-lg">
+        <span className=" font-bold">Role : </span>
+        {user?.role}
        </h1>
       </div>
      </div>
@@ -80,7 +95,7 @@ const UserDashboard = () => {
            <li key={product.id} className="flex flex-col justify-between space-x-5 py-7 md:flex-row">
             <div className="flex flex-1 items-stretch">
              <div className="flex-shrink-0">
-              <img className="h-20 w-20 rounded-lg border border-gray-200 object-contain" src={product.imageSrc} alt={product.imageSrc} />
+              <img className="h-20 w-20 rounded-lg border border-gray-200 object-contain" src={product.imageSrc} alt="img" />
              </div>
 
              <div className="ml-5 flex flex-col justify-between">
