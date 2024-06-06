@@ -24,7 +24,7 @@ const HomePageProductCard = () => {
                                 <div key={index} className="p-8 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
                                     <div 
                                         className="h-full border border-gray-300 rounded-xl px-4 overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300"
-                                        onClick={() => navigate('/productinfo')}
+                                        onClick={() => navigate(`/productinfo/${id}`)}
                                     >
                                       <div className="p-4 flex flex-1 justify-center">
 
