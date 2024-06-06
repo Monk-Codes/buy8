@@ -1,79 +1,216 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import MyContext from "../../context/MyContext";
 import Loader from "../Loader";
+import { fireDB } from "../../firebase/FirebaseConfig";
+import toast from "react-hot-toast";
+import { Timestamp, doc, getDoc, setDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+const categoryList = [
+  { name: "none" },
+  { name: "fashion" },
+  { name: "shirt" },
+  { name: "jacket" },
+  { name: "mobile" },
+  { name: "laptop" },
+  { name: "shoes" },
+  { name: "home" },
+  { name: "books" },
+];
 
 const UpdateProductPage = () => {
- const context = useContext(MyContext);
- const { loading, getAllProduct } = context;
- return (
-  <div>
-   <div className="py-5 flex justify-between items-center">
-    {/* text  */}
-    <h1 className=" text-xl text-amber-500 font-bold">All Product</h1>
-    {/* Add Product Button  */}
-    <Link to={"/add-product"}>
-     <button className="px-5 py-2 bg-amber-50 border border-amber-100 rounded-lg">Add Product</button>
-    </Link>
-   </div>
+  const context = useContext(MyContext);
+  const { loading, setLoading, getAllProductFunction } = context;
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-   {/* Loading  */}
-   <div className="flex justify-center relative top-20">{loading && <Loader />}</div>
+  const [product, setProduct] = useState({
+    title: "",
+    price: "",
+    quantity: "",
+    productImage: "",
+    category: "",
+    description: "",
+    time: Timestamp.now(),
+    date: new Date().toLocaleString("en-IN", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit",
+    }),
+  });
 
-   {/* table  */}
-   <div className="w-full overflow-x-auto">
-    <table className="w-full  border border-collapse sm:border-separate border-amber-100 text-amber-400 text-center">
-     <tbody>
-      <tr>
-       <th scope="col" className="h-12 px-2 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara">
-        S.No.
-       </th>
-       <th scope="col" className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara">
-        Image
-       </th>
-       <th scope="col" className="h-12 px-4 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
-        Title
-       </th>
-       <th scope="col" className="h-12 px-4 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
-        Price
-       </th>
-       <th scope="col" className="h-12 px-4 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
-        Category
-       </th>
-       <th scope="col" className="h-12 px-2 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
-        Date
-       </th>
-       <th scope="col" className="h-12 px-4 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
-        Edit
-       </th>
-       <th scope="col" className="h-12 px-2 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
-        Delete
-       </th>
-      </tr>
-      {getAllProduct.map((item, index) => {
-       const { id, title, price, category, date, productImage } = item;
-       return (
-        <tr key={index} className="text-pink-300">
-         <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 ">{index + 1}.</td>
-         <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
-          <div className="flex justify-center">
-           <img className="w-20 " src={productImage} alt="img" />
+  const [newImageFile, setNewImageFile] = useState(null);
+
+  //  GET SINGLE PRODUCT
+  const getSingleProductFunction = async () => {
+    setLoading(true);
+
+    try {
+      const productTemp = await getDoc(doc(fireDB, "products", id));
+      const product = productTemp.data();
+      setProduct({
+        title: product?.title,
+        price: product?.price,
+        productImage: product?.productImage,
+        category: product?.category,
+        description: product?.description,
+        quantity: product?.quantity,
+        time: product?.time,
+        date: product?.date,
+      });
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files[0]) {
+      setNewImageFile(e.target.files[0]);
+    }
+  };
+
+  const updateProduct = async () => {
+    setLoading(true);
+
+    try {
+      let updatedProduct = { ...product };
+
+      if (newImageFile) {
+        const storage = getStorage();
+        const storageRef = ref(storage, `products/${newImageFile.name}`);
+        await uploadBytes(storageRef, newImageFile);
+        const imageUrl = await getDownloadURL(storageRef);
+        updatedProduct.productImage = imageUrl;
+      }
+
+      await setDoc(doc(fireDB, "products", id), updatedProduct);
+      toast.success("Product Updated successfully");
+      getAllProductFunction();
+      setLoading(false);
+      navigate("/admin-dashboard");
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getSingleProductFunction();
+  }, []);
+
+  return (
+    <div>
+      <div className="flex justify-center items-center h-screen">
+        {loading && <Loader />}
+        <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
+          <div className="mb-5">
+            <h2 className="text-center text-2xl font-bold text-pink-500 ">Update Product</h2>
           </div>
-         </td>
-         <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">{title}</td>
-         <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">₹{price}</td>
-         <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">{category}</td>
-         <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">{date}</td>
-         <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500   cursor-pointer ">✏️</td>
-         <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500   cursor-pointer ">❌</td>
-        </tr>
-       );
-      })}
-     </tbody>
-    </table>
-   </div>
-  </div>
- );
+          <div className="mb-3">
+            <input
+              type="text"
+              name="title"
+              value={product.title}
+              onChange={(e) => {
+                setProduct({
+                  ...product,
+                  title: e.target.value,
+                });
+              }}
+              placeholder="Product Title"
+              className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="number"
+              name="price"
+              value={product.price}
+              onChange={(e) => {
+                setProduct({
+                  ...product,
+                  price: e.target.value,
+                });
+              }}
+              placeholder="Product Price"
+              className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="number"
+              name="quantity"
+              value={product.quantity}
+              onChange={(e) => {
+                setProduct({
+                  ...product,
+                  quantity: e.target.value,
+                });
+              }}
+              placeholder="Product quantity"
+              className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="file"
+              name="productImage"
+              onChange={handleFileChange}
+              placeholder="Product Image"
+              className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+            />
+          </div>
+          <div className="mb-3">
+            <select
+              value={product.category}
+              onChange={(e) => {
+                setProduct({
+                  ...product,
+                  category: e.target.value,
+                });
+              }}
+              className="w-full px-1 py-2 text-pink-300 bg-pink-50 border border-pink-200 rounded-md outline-none"
+            >
+              <option disabled>Select Product Category</option>
+              {categoryList.map((value, index) => {
+                const { name } = value;
+                return (
+                  <option className="first-letter:uppercase" key={index} value={name}>
+                    {name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="mb-3">
+            <textarea
+              value={product.description}
+              onChange={(e) => {
+                setProduct({
+                  ...product,
+                  description: e.target.value,
+                });
+              }}
+              name="description"
+              placeholder="Product Description"
+              rows="5"
+              className="w-full px-2 py-1 text-pink-300 bg-pink-50 border border-pink-200 rounded-md outline-none placeholder-pink-300"
+            ></textarea>
+          </div>
+          <div className="mb-3">
+            <button
+              onClick={updateProduct}
+              type="button"
+              className="bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md"
+            >
+              Update Product
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default UpdateProductPage;

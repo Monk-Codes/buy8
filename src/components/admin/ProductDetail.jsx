@@ -1,11 +1,27 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MyContext from "../../context/MyContext";
 import Loader from "../Loader";
+import { deleteDoc, doc } from "firebase/firestore";
+import { fireDB } from "../../firebase/FirebaseConfig";
+import toast from "react-hot-toast";
 
 const ProductDetail = () => {
  const context = useContext(MyContext);
- const { loading, getAllProduct } = context;
+ const { loading,setLoading, getAllProduct,getAllProductFunction } = context;
+ const navigate = useNavigate();
+ // Delete product 
+ const deleteProduct = async (id) => {
+  setLoading(true)
+  try {
+      await deleteDoc(doc(fireDB, 'products', id))
+      toast.success('Product Deleted successfully')
+      getAllProductFunction();
+      setLoading(false)
+  } catch (error) {
+      setLoading(false)
+  }
+}
  return (
   <div>
    <div className="py-5 flex justify-between items-center">
@@ -64,8 +80,13 @@ const ProductDetail = () => {
          <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">₹{price}</td>
          <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">{category}</td>
          <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">{date}</td>
-         <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500   cursor-pointer ">✏️</td>
-         <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500   cursor-pointer ">❌</td>
+         <td onClick={() => navigate(`/update-product/${id}`)}
+         className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500   cursor-pointer " >
+          ✏️
+         </td>
+         <td onClick={()=>deleteProduct(id)} className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500   cursor-pointer ">
+          ❌
+         </td>
         </tr>
        );
       })}

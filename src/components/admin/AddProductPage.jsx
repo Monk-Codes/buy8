@@ -8,33 +8,15 @@ import Loader from "../Loader";
 import MyContext from "../../context/MyContext";
 
 const categoryList = [
- {
-  name: "none",
- },
- {
-  name: "fashion",
- },
- {
-  name: "shirt",
- },
- {
-  name: "jacket",
- },
- {
-  name: "mobile",
- },
- {
-  name: "laptop",
- },
- {
-  name: "shoes",
- },
- {
-  name: "home",
- },
- {
-  name: "books",
- },
+  { name: "none" },
+  { name: "fashion" },
+  { name: "shirt" },
+  { name: "jacket" },
+  { name: "mobile" },
+  { name: "laptop" },
+  { name: "shoes" },
+  { name: "home" },
+  { name: "books" },
 ];
 
 const AddProductPage = () => {

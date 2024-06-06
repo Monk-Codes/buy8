@@ -57,7 +57,7 @@ const App = () => {
        }
       />
       <Route
-       path="/update-product"
+       path="/update-product/:id"
        element={
         <ProtectedRouteAdmin>
          <UpdateProductPage />
