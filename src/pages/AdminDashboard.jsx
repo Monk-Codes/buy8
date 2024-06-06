@@ -103,10 +103,11 @@ const AdminDashboard = () => {
        </Tab>
       </TabList>
 
-      <TabPanel></TabPanel>
-      <ProductDetail />
+      <TabPanel>
+       <ProductDetail />
+      </TabPanel>
 
-      <TabPanel></TabPanel>
+      <TabPanel>Order</TabPanel>
       <OrderDetail />
 
       <TabPanel>All User</TabPanel>

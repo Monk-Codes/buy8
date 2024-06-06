@@ -9,7 +9,7 @@ const ProductInfo = () => {
       <div className="w-full px-4 mb-8 md:w-1/2 md:mb-0">
        <div className="">
         <div className="">
-         <img className=" w-full lg:h-[39em] rounded-lg" src="https://i.pinimg.com/736x/e4/61/f2/e461f2246b6ad93e2099d98780626396.jpg" alt="" />
+         <img className=" w-full lg:h-[39em] rounded-lg" src="https://i.pinimg.com/736x/e4/61/f2/e461f2246b6ad93e2099d98780626396.jpg" alt="img" />
         </div>
        </div>
       </div>

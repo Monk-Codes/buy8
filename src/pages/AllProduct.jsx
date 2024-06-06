@@ -96,7 +96,7 @@ const AllProduct = () => {
         return (
          <div key={index} className="px-10 mb-4 w-full md:w-1/2 lg:w-1/4">
           <div className="product-card h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
-           <img onClick={() => navigate("/productinfo")} className="h-72 w-full lg:w-full lg:h-80 transition duration-300 ease-in-out transform hover:scale-105" src={image} alt="blog" />
+           <img onClick={() => navigate("/productinfo")} className="h-72 w-full lg:w-full lg:h-80 transition duration-300 ease-in-out transform hover:scale-105" src={image} alt="image" />
            <div className="p-4 transition duration-300 ease-in-out transform hover:bg-gray-200">
             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Category</h2>
             <h1 className="title-font text-lg font-medium text-gray-700 mb-3">{title.substring(0, 25)}</h1>
