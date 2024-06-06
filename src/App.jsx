@@ -13,9 +13,10 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AddProductPage from "./components/admin/AddProductPage";
 import UpdateProductPage from "./components/admin/UpdateProductPage";
 import MyState from "./context/MyState";
-import { Toaster } from "react-hot-toast";
 import { ProtectedRouteUser } from "./protectedRoute/ProtectedRouteUser";
 import { ProtectedRouteAdmin } from "./protectedRoute/ProtectedRouteAdmin";
+import { Toaster } from "react-hot-toast";
+import CategoryPage from "./pages/category/CategoryPage";
 
 const App = () => {
  return (
@@ -29,6 +30,7 @@ const App = () => {
       <Route path="/productinfo/:id" element={<ProductInfo />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/allproduct" element={<AllProduct />} />
+      <Route path="/category/:categoryname" element={<CategoryPage />} /> 
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/help" element={<Help />} />
