@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import HeroSection from "../components/HeroSection";
 import Layout from "../components/Layout";
 import MyContext from "../context/MyContext";
