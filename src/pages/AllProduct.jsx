@@ -1,12 +1,40 @@
 import { useNavigate } from "react-router";
 import Layout from "../components/Layout";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import MyContext from "../context/MyContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, deleteFromCart } from "../redux/CartSlice";
+import toast from "react-hot-toast";
 
 const AllProduct = () => {
  const navigate = useNavigate();
  const context = useContext(MyContext);
- const {getAllProduct} = context;
+ const { getAllProduct } = context;
+
+ const cartItems = useSelector((state) => state.cart);
+ const dispatch = useDispatch();
+ //CART CRUD
+
+ const addCart = (item) => {
+  dispatch(addToCart(item));
+  toast.success("Added to cart");
+
+  const audio = new Audio("src/assets/added.mp3");
+  audio.play();
+ };
+
+ const deleteCart = (item) => {
+  dispatch(deleteFromCart(item));
+  toast.success("Removed from cart");
+
+  const audio1 = new Audio("src/assets/added.mp3");
+  audio1.play();
+ };
+
+ useEffect(() => {
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+ }, [cartItems]);
+
  return (
   <Layout>
    <div className=" bg-slate-300 min-h-screen">
@@ -20,7 +48,7 @@ const AllProduct = () => {
      <div className="container px-5 lg:px-0 py-5 mx-auto">
       <div className="flex flex-wrap">
        {getAllProduct.map((item, index) => {
-        const { id, title, price,productImage,category } = item;
+        const { id, title, price, productImage, category } = item;
         return (
          <div key={index} className="px-10 mb-4 w-full md:w-1/2 lg:w-1/4">
           <div className="product-card h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
@@ -30,7 +58,15 @@ const AllProduct = () => {
             <h1 className="title-font text-lg font-medium text-gray-700 mb-3">{title.substring(0, 25)}</h1>
             <h1 className="title-font text-lg font-medium text-amber-500 mb-3">₹{price}</h1>
             <div className="flex justify-center ">
-             <button className="bg-slate-500 hover:bg-amber-400 w-full text-white py-[4px] rounded-2xl font-bold focus:outline-none focus:ring focus:ring-offset-2 focus:ring-amber-500">Add To Cart</button>
+             {cartItems.some((p) => p.id === item.id) ? (
+              <button onClick={() => deleteCart(item)} className="bg-slate-500 hover:bg-amber-400 w-full text-white py-[4px] rounded-2xl font-bold focus:outline-none focus:ring focus:ring-offset-2 focus:ring-amber-500">
+               Remove
+              </button>
+             ) : (
+              <button onClick={() => addCart(item)} className="bg-slate-500 hover:bg-amber-400 w-full text-white py-[4px] rounded-2xl font-bold focus:outline-none focus:ring focus:ring-offset-2 focus:ring-amber-500">
+               Add to Cart
+              </button>
+             )}
             </div>
            </div>
           </div>
