@@ -8,20 +8,20 @@ import toast from "react-hot-toast";
 
 const ProductDetail = () => {
  const context = useContext(MyContext);
- const { loading,setLoading, getAllProduct,getAllProductFunction } = context;
+ const { loading, setLoading, getAllProduct, getAllProductFunction } = context;
  const navigate = useNavigate();
- // Delete product 
+ // Delete product
  const deleteProduct = async (id) => {
-  setLoading(true)
+  setLoading(true);
   try {
-      await deleteDoc(doc(fireDB, 'products', id))
-      toast.success('Product Deleted successfully')
-      getAllProductFunction();
-      setLoading(false)
+   await deleteDoc(doc(fireDB, "products", id));
+   toast.success("Product Deleted successfully");
+   getAllProductFunction();
+   setLoading(false);
   } catch (error) {
-      setLoading(false)
+   setLoading(false);
   }
-}
+ };
  return (
   <div>
    <div className="py-5 flex justify-between items-center">
@@ -41,28 +41,28 @@ const ProductDetail = () => {
     <table className="w-full  border border-collapse sm:border-separate border-amber-100 text-amber-400 text-center">
      <tbody>
       <tr>
-       <th scope="col" className="h-12 px-2 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara">
+       <th scope="col" className="dashli">
         S.No.
        </th>
-       <th scope="col" className="h-12 px-6 text-md border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100 font-bold fontPara">
+       <th scope="col" className="dashli">
         Image
        </th>
-       <th scope="col" className="h-12 px-4 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+       <th scope="col" className="dashli">
         Title
        </th>
-       <th scope="col" className="h-12 px-4 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+       <th scope="col" className="dashli">
         Price
        </th>
-       <th scope="col" className="h-12 px-4 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+       <th scope="col" className="dashli">
         Category
        </th>
-       <th scope="col" className="h-12 px-2 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+       <th scope="col" className="dashli">
         Date
        </th>
-       <th scope="col" className="h-12 px-4 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+       <th scope="col" className="dashli">
         Edit
        </th>
-       <th scope="col" className="h-12 px-2 text-md font-bold fontPara border-l first:border-l-0 border-pink-100 text-slate-700 bg-slate-100">
+       <th scope="col" className="dashli">
         Delete
        </th>
       </tr>
@@ -70,21 +70,20 @@ const ProductDetail = () => {
        const { id, title, price, category, date, productImage } = item;
        return (
         <tr key={index} className="text-pink-300">
-         <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 ">{index + 1}.</td>
-         <td className="h-12 px-6 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">
+         <td className="dashtd ">{index + 1}.</td>
+         <td className="dashtd ">
           <div className="flex justify-center">
            <img className="w-20 " src={productImage} alt="img" />
           </div>
          </td>
-         <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">{title}</td>
-         <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">₹{price}</td>
-         <td className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">{category}</td>
-         <td className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500 text-slate-500 first-letter:uppercase ">{date}</td>
-         <td onClick={() => navigate(`/update-product/${id}`)}
-         className="h-12 px-4 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500   cursor-pointer " >
+         <td className="dashtd">{title}</td>
+         <td className="dashtd">₹{price}</td>
+         <td className="dashtd">{category}</td>
+         <td className="dashtd ">{date}</td>
+         <td onClick={() => navigate(`/update-product/${id}`)} className="dashtd cursor-pointer ">
           ✏️
          </td>
-         <td onClick={()=>deleteProduct(id)} className="h-12 px-2 text-md transition duration-300 border-t border-l first:border-l-0 border-pink-100 stroke-slate-500   cursor-pointer ">
+         <td onClick={() => deleteProduct(id)} className="dashtd cursor-pointer ">
           ❌
          </td>
         </tr>

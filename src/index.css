@@ -39,7 +39,7 @@
  border-left: 1px solid #fbcfe8; /* border-l and border-pink-100 */
  stroke: #6b7280; /* stroke-slate-500 */
  color: #6b7280; /* text-slate-500 */
- text-transform: uppercase; /* first-letter:uppercase */
+ text-transform: capitalize; /* first-letter:uppercase */
  text-wrap: nowrap;
 }
 /* width */
