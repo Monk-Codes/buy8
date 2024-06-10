@@ -15,3 +15,34 @@
  color: #000000;
  transform: scale(1.05);
 }
+.dashli {
+ height: 3rem; /* h-12 */
+ padding-left: 0.5rem; /* px-2 */
+ padding-right: 0.5rem; /* px-2 */
+ font-size: 1rem; /* text-md */
+ border-left: 1px solid #fbcfe8; /* border-l and border-pink-100 */
+ color: #374151; /* text-slate-700 */
+ background-color: #f1f5f9; /* bg-slate-100 */
+ font-weight: bold;
+ text-wrap: nowrap;
+ scroll-margin: 0;
+ scrollbar-width: none;
+}
+.dashtd {
+ height: 3rem; /* h-12 */
+ padding-left: 1rem; /* px-4 */
+ padding-right: 1rem; /* px-4 */
+ font-size: 1rem; /* text-md */
+ transition-property: all; /* transition */
+ transition-duration: 300ms; /* duration-300 */
+ border-top: 1px solid #fbcfe8; /* border-t and border-pink-100 */
+ border-left: 1px solid #fbcfe8; /* border-l and border-pink-100 */
+ stroke: #6b7280; /* stroke-slate-500 */
+ color: #6b7280; /* text-slate-500 */
+ text-transform: uppercase; /* first-letter:uppercase */
+ text-wrap: nowrap;
+}
+/* width */
+::-webkit-scrollbar {
+ display: none;
+}

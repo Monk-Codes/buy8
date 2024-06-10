@@ -27,8 +27,31 @@ function MyState({ children }) {
   }
  };
 
+ // order state
+ const [getAllOrder, setGetAllOrder] = useState([]);
+
+ const getAllOrderFunction = async () => {
+  setLoading(true);
+  try {
+   const q = query(collection(fireDB, "order"), orderBy("time"));
+   const data = onSnapshot(q, (QuerySnapshot) => {
+    let orderArray = [];
+    QuerySnapshot.forEach((doc) => {
+     orderArray.push({ ...doc.data(), id: doc.id });
+    });
+    setGetAllOrder(orderArray);
+    setLoading(false);
+   });
+   return () => data;
+  } catch (error) {
+   console.log(error);
+   setLoading(false);
+  }
+ };
+
  useEffect(() => {
   getAllProductFunction();
+  getAllOrderFunction();
  }, []);
  return (
   <MyContext.Provider
@@ -36,7 +59,9 @@ function MyState({ children }) {
     loading,
     setLoading,
     getAllProduct,
-    getAllProductFunction
+    getAllProductFunction,
+    getAllOrder,
+    getAllOrderFunction,
    }}
   >
    {children}

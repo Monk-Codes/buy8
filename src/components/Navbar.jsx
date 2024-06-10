@@ -34,14 +34,18 @@ const Navbar = () => {
    </li>
 
    {/* User */}
-   <li className="navli">
-    <Link to={"/dashboard"}>My Orders</Link>
-   </li>
+   {user?.role === "user" && (
+    <li className="navli">
+     <Link to={"/dashboard"}>My Orders</Link>
+    </li>
+   )}
 
    {/* Admin */}
-   <li className="navli">
-    <Link to={"/admin-dashboard"}>Admin</Link>
-   </li>
+   {user?.role === "admin" && (
+    <li className="navli">
+     <Link to={"/admin-dashboard"}>Admin</Link>
+    </li>
+   )}
    {/* Logout */}
    {user && (
     <li className="cursor-pointer navli" onClick={logout}>

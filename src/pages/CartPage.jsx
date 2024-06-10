@@ -97,6 +97,11 @@ const CartPage = () => {
     mobileNumber: "",
    });
    toast.success("Order Placed Successfull");
+   if (navigator.vibrate) {
+    navigator.vibrate([200]);
+   }
+   const audio = new Audio("src/assets/added.mp3");
+   audio.play();
   } catch (error) {
    console.log(error);
   }
