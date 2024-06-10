@@ -215,7 +215,7 @@ const CartPage = () => {
            Continue Shopping
           </button>
          </div>
-         <img src="src/assets/ShopNow.gif" alt="img" />
+         <img src="https://ibb.co/1ZR74fn" alt="img" />
         </section>
        </div>
       </>

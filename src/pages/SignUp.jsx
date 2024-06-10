@@ -151,7 +151,7 @@ const Signup = () => {
 
     {/* <!-- image --> */}
     <div className="md:block hidden w-1/2">
-     <img className="rounded-xl" src="src/assets/signUp.gif" />
+     <img className="rounded-xl" src="https://ibb.co/jMKnY8T" />
     </div>
    </div>
   </section>
