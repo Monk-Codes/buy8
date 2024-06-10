@@ -38,10 +38,10 @@ const HomePageProductCard = () => {
  }, [cartItems]);
 
  return (
-  <div className="mt-10 px-4 md:px-8">
+  <div className="mt-6 px-4 md:px-8 ">
    {/* Heading  */}
    <div>
-    <h1 className="text-center mb-5 text-2xl font-semibold">Bestselling Products</h1>
+    <h1 className="text-center mb-1 text-3xl font-button text-amber-500 hover:scale-x-110 transition ease-in-out duration-300 hover:text-amber-300 shadow-md ">Bestselling Products</h1>
    </div>
 
    {/* main  */}
@@ -54,7 +54,7 @@ const HomePageProductCard = () => {
         <div key={index} className="p-8 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
          <div className="h-full border border-gray-300 rounded-xl px-4 overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300">
           <div className="p-4 flex flex-1 justify-center">
-           <img className="h-48 object-cover object-center " src={productImage} alt="product" onClick={() => navigate(`/productinfo/${id}`)} />
+           <img className="h-48 object-cover object-center  " src={productImage} alt="product" onClick={() => navigate(`/productinfo/${id}`)} />
           </div>
           <div className="p-6">
            <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{category}</h2>
@@ -62,11 +62,11 @@ const HomePageProductCard = () => {
            <h1 className="title-font text-lg font-medium text-gray-900 mb-3">₹{price}</h1>
            <div className="flex justify-center">
             {cartItems.some((e) => e.id === item.id) ? (
-             <button onClick={() => deleteCart(item)} className="bg-pink-500 hover:bg-pink-600 focus:bg-pink-700 w-full text-white py-2 rounded-lg font-bold focus:outline-none focus:ring-2 focus:ring-pink-300 transition-colors duration-300">
+             <button onClick={() => deleteCart(item)} className="bg-amber-500 hover:bg-orange-500 focus:bg-orange-700 w-full text-white py-2 rounded-lg font-bold focus:outline-none focus:ring-2 focus:ring-pink-300 transition-colors duration-300">
               Remove
              </button>
             ) : (
-             <button onClick={() => addCart(item)} className="bg-pink-500 hover:bg-pink-600 focus:bg-pink-700 w-full text-white py-2 rounded-lg font-bold focus:outline-none focus:ring-2 focus:ring-pink-300 transition-colors duration-300">
+             <button onClick={() => addCart(item)} className="bg-amber-500 hover:bg-orange-500 focus:bg-orange-700 w-full text-white py-2 rounded-lg font-main focus:outline-none focus:ring-2 focus:ring-pink-300 transition-colors duration-300">
               Add To Cart
              </button>
             )}

@@ -71,7 +71,7 @@ const CategoryPage = () => {
              <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
               <img onClick={() => navigate(`/productinfo/${id}`)} className="lg:h-80  h-96 w-full" src={productImage} alt="img" />
               <div className="p-6">
-               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">E-bharat</h2>
+               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Buy8</h2>
                <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{title.substring(0, 25)}</h1>
                <h1 className="title-font text-lg font-medium text-gray-900 mb-3">₹{price}</h1>
 

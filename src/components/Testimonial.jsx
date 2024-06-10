@@ -17,7 +17,7 @@ const Testimonial = () => {
       {/* Testimonial 1 */}
       <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
        <div className="h-full text-center">
-        <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="src/assets/person.svg" />
+        <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://i.ibb.co/Gs8YKW7/happy-man-svgrepo-com.png" />
         <p className="leading-relaxed">
          Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.
         </p>
@@ -30,7 +30,7 @@ const Testimonial = () => {
       {/* Testimonial 2 */}
       <div className="lg:w-1/3 lg:mb-0 mb-6 p-4">
        <div className="h-full text-center">
-        <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://www.devknus.com/img/gawri.png" />
+        <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://i.ibb.co/swY04NS/woman-using-smartphone-svgrepo-com.png" />
         <p className="leading-relaxed">
          Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.
         </p>
@@ -43,7 +43,7 @@ const Testimonial = () => {
       {/* Testimonial 3 */}
       <div className="lg:w-1/3 lg:mb-0 p-4">
        <div className="h-full text-center">
-        <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="src/assets/person.svg" />
+        <img alt="testimonial" className="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://i.ibb.co/nsFNY7Z/vlogger.gif" />
         <p className="leading-relaxed">
          Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.
         </p>
