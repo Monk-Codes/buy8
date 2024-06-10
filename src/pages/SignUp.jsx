@@ -25,7 +25,7 @@ const Signup = () => {
   // validation
   if (userSignup.name === "" || userSignup.email === "" || userSignup.password === "") {
    toast.error("All fields are required");
-   return; // Early return if validation fails
+   return;
   }
 
   setLoading(true);
@@ -70,7 +70,7 @@ const Signup = () => {
    {/* <!-- login container --> */}
    <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl items-center py-5">
     {/* <!-- form --> */}
-    <div className="md:w-1/2 px-8 md:px-16">
+    <div className=" px-8 md:px-16">
      <h2 className="font-bold text-2xl text-[#002D74]">SignUp</h2>
      <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
       <svg className="mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="25px">
@@ -147,11 +147,6 @@ const Signup = () => {
      </div>
 
      <p className="mt-6 text-xs text-gray-600 text-center">I agree to abide by Buy8's Terms of Service & User Policy</p>
-    </div>
-
-    {/* <!-- image --> */}
-    <div className="md:block hidden w-1/2">
-     <img className="rounded-xl" src="https://ibb.co/jMKnY8T" />
     </div>
    </div>
   </section>

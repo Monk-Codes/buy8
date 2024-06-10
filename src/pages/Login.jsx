@@ -64,7 +64,7 @@ const Login = () => {
   <section className="bg-gray-700 min-h-screen flex items-center justify-center">
    {loading && <Loader />}
    <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-    <div className="md:w-1/2 px-8 md:px-16">
+    <div className=" px-8 md:px-16">
      <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
      <p className="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p>
 
@@ -132,10 +132,6 @@ const Login = () => {
        <Link to={"/signup"}>SignUp</Link>
       </button>
      </div>
-    </div>
-
-    <div className="md:block hidden w-1/2">
-     <img className="rounded-2xl" src="https://ibb.co/mh8LxPf" />
     </div>
    </div>
   </section>
