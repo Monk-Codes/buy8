@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import MyContext from "../../context/MyContext";
 import { fireDB } from "../../firebase/FirebaseConfig";
-import { deleteDoc, doc } from "firebase/firestore";
 import toast from "react-hot-toast";
+import { deleteDoc, doc } from "firebase/firestore";
 
 const UserDetail = () => {
  const context = useContext(MyContext);
