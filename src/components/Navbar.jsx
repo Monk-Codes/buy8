@@ -17,7 +17,7 @@ const Navbar = () => {
 
  // navList Data
  const navList = (
-  <ul className="flex space-x-1 text-amber-300 font-sm md:font-medium text-nowrap border-amber-600 lg:border-none self-center">
+  <ul className="flex space-x-2 text-amber-300 font-sm md:font-medium text-nowrap border-amber-600 lg:border-none self-center">
    {/* Home */}
    <li className="navli">
     <Link to={"/"}>Home</Link>
@@ -26,11 +26,6 @@ const Navbar = () => {
    {/* All Products */}
    <li className="navli">
     <Link to={"/allproduct"}>All Products</Link>
-   </li>
-
-   {/* Signup */}
-   <li className="navli">
-    <Link to={"/signup"}>Signup</Link>
    </li>
 
    {/* User */}
@@ -46,16 +41,18 @@ const Navbar = () => {
      <Link to={"/admin-dashboard"}>Admin</Link>
     </li>
    )}
+
+   {/* Cart */}
+   <li className="navli">
+    <Link to={"/cart"}>Cart({cartItems.length})</Link>
+   </li>
+
    {/* Logout */}
    {user && (
     <li className="cursor-pointer navli" onClick={logout}>
      Logout
     </li>
    )}
-   {/* Cart */}
-   <li className="navli">
-    <Link to={"/cart"}>Cart({cartItems.length})</Link>
-   </li>
   </ul>
  );
  return (

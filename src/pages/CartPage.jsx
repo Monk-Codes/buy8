@@ -1,17 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../components/Layout";
 import { Trash } from "lucide-react";
-import { decrementQuantity, deleteFromCart, incrementQuantity } from "../redux/CartSlice";
+import { clearCart, decrementQuantity, deleteFromCart, incrementQuantity } from "../redux/CartSlice";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import BuyNow from "../components/BuyNow";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { fireDB } from "../firebase/FirebaseConfig";
 
 const CartPage = () => {
  const cartItems = useSelector((state) => state.cart);
  const dispatch = useDispatch();
+ const navigate = useNavigate();
 
  const deleteCart = (item) => {
   dispatch(deleteFromCart(item));
@@ -97,11 +98,13 @@ const CartPage = () => {
     mobileNumber: "",
    });
    toast.success("Order Placed Successfull");
+   dispatch(clearCart());
    if (navigator.vibrate) {
     navigator.vibrate([200]);
    }
    const audio = new Audio("src/assets/added.mp3");
    audio.play();
+   navigate("/");
   } catch (error) {
    console.log(error);
   }

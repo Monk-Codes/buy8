@@ -1,31 +1,35 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MyContext from "../context/MyContext";
 import toast from "react-hot-toast";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, fireDB } from "../firebase/FirebaseConfig";
-import { QuerySnapshot, collection, doc, onSnapshot, query, where } from "firebase/firestore";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import Loader from "../components/Loader";
 
 const Login = () => {
  const context = useContext(MyContext);
  const { loading, setLoading } = context;
+
+ // navigate
  const navigate = useNavigate();
- // USER LOGIN STATE
+
+ // User Signup State
  const [userLogin, setUserLogin] = useState({
   email: "",
   password: "",
  });
- // USER LOGIN FUNCTION
+
  const userLoginFunction = async () => {
-  // validate
+  // validation
   if (userLogin.email === "" || userLogin.password === "") {
-   toast.error("All fields are required");
+   toast.error("All Fields are required");
   }
+
   setLoading(true);
   try {
    const users = await signInWithEmailAndPassword(auth, userLogin.email, userLogin.password);
+
    try {
     const q = query(collection(fireDB, "user"), where("uid", "==", users?.user?.uid));
     const data = onSnapshot(q, (QuerySnapshot) => {
@@ -36,34 +40,35 @@ const Login = () => {
       email: "",
       password: "",
      });
-     toast.success("Login successful");
+     toast.success("Login Successfully");
      setLoading(false);
      if (user.role === "user") {
       navigate("/");
-     }
-     if (user.role === "admin") {
+     } else {
       navigate("/admin-dashboard");
      }
     });
+    return () => data;
    } catch (error) {
+    console.log(error);
     setLoading(false);
    }
   } catch (error) {
+   console.log(error);
+   setLoading(false);
    toast.error("Login Failed");
   }
  };
+
  return (
   <section className="bg-gray-700 min-h-screen flex items-center justify-center">
    {loading && <Loader />}
-   {/* <!-- login container --> */}
    <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
-    {/* <!-- form --> */}
     <div className="md:w-1/2 px-8 md:px-16">
      <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
      <p className="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p>
 
-     <form action="" className="flex flex-col gap-4">
-      {/* Input 1 */}
+     <form className="flex flex-col gap-4">
       <input
        className="p-2 mt-8 rounded-xl border"
        type="email"
@@ -75,7 +80,6 @@ const Login = () => {
        }}
       />
       <div className="relative">
-       {/* Input 2 */}
        <input
         className="p-2 rounded-xl border w-full"
         type="password"
@@ -130,7 +134,6 @@ const Login = () => {
      </div>
     </div>
 
-    {/* <!-- image --> */}
     <div className="md:block hidden w-1/2">
      <img className="rounded-2xl" src="src/assets/signUp.gif" />
     </div>

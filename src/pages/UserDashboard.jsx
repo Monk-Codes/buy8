@@ -66,7 +66,7 @@ const UserDashboard = () => {
              <div className="w-full border-r border-pink-100 bg-pink-50 md:max-w-xs">
               {/* left  */}
               <div className="p-8">
-               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-1">
+               <div className="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-1">
                 <div className="mb-4">
                  <div className="text-sm font-semibold text-black">Order Id</div>
                  <div className="text-sm font-medium text-gray-900">#{id}</div>
