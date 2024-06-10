@@ -7,7 +7,7 @@ const HeroSection = () => {
  return (
   <>
    <div>
-    <img className=" h-40 md:h-full lg:h-full" src="https://ibb.co/JxpghYR" alt="hero" />
+    <img className=" h-40 md:h-full lg:h-full" src="https://i.ibb.co/5Yjw7QW/hero.png" alt="hero" />
    </div>
    <Category />
    <HomePageProductCard />
