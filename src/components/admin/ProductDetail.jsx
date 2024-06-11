@@ -69,14 +69,14 @@ const ProductDetail = () => {
       {getAllProduct.map((item, index) => {
        const { id, title, price, category, date, productImage } = item;
        return (
-        <tr key={index} className="text-pink-300">
+        <tr key={index} className="text-amber-500">
          <td className="dashtd ">{index + 1}.</td>
          <td className="dashtd ">
           <div className="flex justify-center">
            <img className="w-20 " src={productImage} alt="img" />
           </div>
          </td>
-         <td className="dashtd">{title}</td>
+         <td className="dashtd text-wrap">{title}</td>
          <td className="dashtd">₹{price}</td>
          <td className="dashtd">{category}</td>
          <td className="dashtd ">{date}</td>

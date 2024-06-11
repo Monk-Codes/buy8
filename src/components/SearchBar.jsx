@@ -17,7 +17,7 @@ const SearchBar = () => {
   <div className="">
    {/* search input  */}
    <div className="input flex justify-center">
-    <input type="text" placeholder="Search here" onChange={(e) => setSearch(e.target.value)} className=" bg-gray-200 placeholder-gray-400 rounded-lg px-2 py-2 w-96 lg:w-96 md:w-96 outline-none text-black " />
+    <input type="text" placeholder="Search here" onChange={(e) => setSearch(e.target.value.toLowerCase())} className=" bg-gray-200 placeholder-gray-500 rounded-lg px-2 py-2 w-96 lg:w-96 md:w-96 outline-none text-black " />
    </div>
 
    {/* search drop-down  */}

@@ -7,17 +7,7 @@ import { useNavigate } from "react-router";
 import Loader from "../Loader";
 import MyContext from "../../context/MyContext";
 
-const categoryList = [
-  { name: "none" },
-  { name: "fashion" },
-  { name: "shirt" },
-  { name: "jacket" },
-  { name: "mobile" },
-  { name: "laptop" },
-  { name: "shoes" },
-  { name: "home" },
-  { name: "books" },
-];
+const categoryList = [{ name: "none" }, { name: "fashion" }, { name: "shirt" }, { name: "jacket" }, { name: "mobile" }, { name: "laptop" }, { name: "shoes" }, { name: "home" }, { name: "books" }];
 
 const AddProductPage = () => {
  const context = useContext(MyContext);
@@ -54,7 +44,7 @@ const AddProductPage = () => {
 
  // Add Product Function
  const addProductFunction = async () => {
-  if (product.title === "" || product.price === "" || product.productImage === null || product.category === "" || product.description === "" || product.quantity === "") {
+  if (product.title > 4 || product.price > 1 || product.productImage === null || product.category === "" || product.description > 10 || product.quantity > 1) {
    return toast.error("All fields are required");
   }
 
@@ -86,13 +76,13 @@ const AddProductPage = () => {
 
  return (
   <div>
-   <div className="flex justify-center items-center h-screen">
+   <div className="flex justify-center items-center min-h-screen bg-orange-200">
     {loading && <Loader />}
     {/* Login Form */}
-    <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
+    <div className=" bg-amber-100 p-2 border border-orange-400 rounded-xl shadow-md backdrop-blur-sm">
      {/* Top Heading */}
      <div className="mb-5">
-      <h2 className="text-center text-2xl font-bold text-pink-500 ">Add Product</h2>
+      <h2 className="text-center text-2xl font-bold text-amber-500 ">Add Product</h2>
      </div>
 
      {/* Input TITLE */}
@@ -108,7 +98,9 @@ const AddProductPage = () => {
         });
        }}
        placeholder="Product Title"
-       className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+       className="bg-orange-50 border text-amber-300 border-orange-200 px-2 py-2 w-96 rounded-md outline-none placeholder-orange-300"
+       title="Minimum 4 characters"
+       maxLength={20}
       />
      </div>
 
@@ -125,7 +117,7 @@ const AddProductPage = () => {
         });
        }}
        placeholder="Product Price"
-       className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+       className="bg-orange-50 border text-amber-300 border-orange-200 px-2 py-2 w-96 rounded-md outline-none placeholder-orange-300"
       />
      </div>
      {/* Input QUANTITY */}
@@ -141,13 +133,13 @@ const AddProductPage = () => {
         });
        }}
        placeholder="Product quantity"
-       className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300"
+       className="bg-orange-50 border text-amber-300 border-orange-200 px-2 py-2 w-96 rounded-md outline-none placeholder-orange-300"
       />
      </div>
 
      {/* Input IMAGE */}
      <div className="mb-3">
-      <input type="file" name="productImage" onChange={handleFileChange} placeholder="Product Image" className="bg-pink-50 border text-pink-300 border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-300" />
+      <input type="file" name="productImage" onChange={handleFileChange} placeholder="Product Image" className="bg-orange-50 border text-amber-300 border-orange-200 px-2 py-2 w-96 rounded-md outline-none placeholder-orange-300" />
      </div>
 
      {/* Input CATEGORY */}
@@ -160,7 +152,7 @@ const AddProductPage = () => {
          category: e.target.value,
         });
        }}
-       className="w-full px-1 py-2 text-pink-300 bg-pink-50 border border-pink-200 rounded-md outline-none"
+       className="w-full px-1 py-2 text-amber-300 bg-orange-50 border border-orange-200 rounded-md outline-none"
       >
        <option disabled>Select Product Category</option>
        {categoryList.map((value, index) => {
@@ -187,13 +179,15 @@ const AddProductPage = () => {
        name="description"
        placeholder="Product Description"
        rows="5"
-       className="w-full px-2 py-1 text-pink-300 bg-pink-50 border border-pink-200 rounded-md outline-none placeholder-pink-300"
+       className="w-full px-2 py-1 text-amber-300 bg-orange-50 border border-orange-200 rounded-md outline-none placeholder-orange-300"
+       title="Minimum 10 characters"
+       maxLength={120}
       ></textarea>
      </div>
 
      {/* Add Product Button */}
      <div className="mb-3">
-      <button onClick={addProductFunction} type="button" className="bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md">
+      <button onClick={addProductFunction} type="button" className="bg-amber-500 hover:bg-green-400 w-full text-white text-center py-2 font-bold rounded-md">
        Add Product
       </button>
      </div>
