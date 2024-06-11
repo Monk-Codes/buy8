@@ -26,7 +26,7 @@ const CategoryPage = () => {
   if (navigator.vibrate) {
    navigator.vibrate([200]);
   }
-  const audio = new Audio("src/assets/added.mp3");
+  const audio = new Audio("../src/assets/added.mp3");
   audio.play();
  };
 
@@ -36,8 +36,8 @@ const CategoryPage = () => {
   if (navigator.vibrate) {
    navigator.vibrate([200]);
   }
-  const audio = new Audio("src/assets/added.mp3");
-  audio.play();
+  const audio1 = new Audio("../src/assets/added.mp3");
+  audio1.play();
  };
 
  useEffect(() => {
@@ -46,10 +46,10 @@ const CategoryPage = () => {
 
  return (
   <Layout>
-   <div className="mt-10">
+   <div className="min-h-screen px-4 py-2 md:px-8 bg-orange-200">
     {/* Heading  */}
-    <div className="">
-     <h1 className=" text-center mb-5 text-2xl font-semibold first-letter:uppercase">{categoryname}</h1>
+    <div className="flex justify-center w-full">
+     <h1 className="w-1/3 text-center mb-1 text-3xl font-button text-amber-500 hover:scale-x-110 transition ease-in-out duration-300 hover:text-amber-300 shadow-md ">{categoryname}</h1>
     </div>
 
     {loading ? (
@@ -57,23 +57,23 @@ const CategoryPage = () => {
       <Loader />
      </div>
     ) : (
-     <section className="text-gray-600 body-font">
+     <section className="text-gray-600 body-font h-full">
       {/* main 2 */}
-      <div className="container px-5 py-5 mx-auto">
+      <div className="container px-1 lg:px-0 py-5 mx-auto">
        {/* main 3  */}
-       <div className="flex flex-wrap -m-4 justify-center">
+       <div className="flex flex-wrap justify-center">
         {filterProduct.length > 0 ? (
          <>
           {filterProduct.map((item, index) => {
-           const { id, title, price, productImage } = item;
+           const { id, title, price, productImage, category } = item;
            return (
-            <div key={index} className="p-4 w-full md:w-1/4">
-             <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
-              <img onClick={() => navigate(`/productinfo/${id}`)} className="lg:h-80  h-96 w-full" src={productImage} alt="img" />
-              <div className="p-6">
-               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Buy8</h2>
+            <div key={index} className="px-2 mb-3 h-96 w-64 sm:w-1/2 md:w-1/3 lg:w-1/5">
+             <div className="product-card border border-gray-400 rounded-2xl overflow-hidden shadow-md cursor-pointer  backdrop-blur-sm bg-amber-100">
+              <img onClick={() => navigate(`/productinfo/${id}`)} className="h-56 w-full p-6 transition duration-300 ease-in-out transform hover:scale-105" src={productImage} alt="img" />
+              <div className="p-4 transition duration-300 ease-in-out transform hover:bg-gray-200">
+               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{category}</h2>
                <h1 className="title-font text-lg font-medium text-gray-900 mb-3">{title.substring(0, 25)}</h1>
-               <h1 className="title-font text-lg font-medium text-gray-900 mb-3">₹{price}</h1>
+               <h1 className="title-font text-lg font-medium text-amber-500 mb-3">₹{price}</h1>
 
                <div className="flex justify-center ">
                 {cartItems.some((p) => p.id === item.id) ? (

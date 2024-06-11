@@ -37,7 +37,7 @@ const AllProduct = () => {
 
  return (
   <Layout>
-   <div className=" min-h-screen px-4 py-2 md:px-8 bg-orange-200">
+   <div className="min-h-screen px-4 py-2 md:px-8 bg-orange-200">
     {/* Heading  */}
     <div className="flex justify-center w-full">
      <h1 className="w-1/3 text-center mb-1 text-3xl font-button text-amber-500 hover:scale-x-110 transition ease-in-out duration-300 hover:text-amber-300 shadow-md ">All Products</h1>

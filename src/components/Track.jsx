@@ -1,13 +1,13 @@
 const Track = () => {
  return (
   <section>
-   <div className=" container mx-auto px-5 py-10 md:py-14">
+   <div className="container px-5 py-2 md:py-4 bg-orange-100">
     {/* main  */}
-    <div className="flex flex-wrap -m-4 text-center">
+    <div className="flex flex-wrap text-center">
      {/* Track 1 */}
      <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
       <div className="border-2 hover:shadow-xl hover:shadow-gray-200 border-gray-200 bg-gray-100 shadow-[inset_0_0_2px_rgba(0,0,0,0.6)] px-4 py-6 rounded-lg">
-       <svg className="text-pink-600 w-12 h-12 mb-3 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+       <svg className="text-amber-600 w-12 h-12 mb-3 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path
          strokeLinecap="round"
          strokeLinejoin="round"
@@ -15,15 +15,15 @@ const Track = () => {
         />
        </svg>
 
-       <h2 className="title-font font-medium text-lg text-gray-900">Premium Tshirts</h2>
-       <p className="leading-relaxed">Our T-Shirts are 100% made of cotton.</p>
+       <h2 className="title-font font-medium text-lg text-gray-900">Shopping made easy</h2>
+       <p className="leading-relaxed">Shopping at your fingertips.</p>
       </div>
      </div>
 
      {/* Track 2 */}
      <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
       <div className="border-2 hover:shadow-xl hover:shadow-gray-200 border-gray-200 bg-gray-100 shadow-[inset_0_0_2px_rgba(0,0,0,0.6)] px-4 py-6 rounded-lg">
-       <svg className="text-pink-600 w-12 h-12 mb-3 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+       <svg className="text-amber-600 w-12 h-12 mb-3 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path
          strokeLinecap="round"
          strokeLinejoin="round"
@@ -31,15 +31,15 @@ const Track = () => {
         />
        </svg>
 
-       <h2 className="title-font font-medium text-lg text-gray-900">Premium Tshirts</h2>
-       <p className="leading-relaxed">Our T-Shirts are 100% made of cotton.</p>
+       <h2 className="title-font font-medium text-lg text-gray-900">Wide Varaity of products.</h2>
+       <p className="leading-relaxed">No need to switch to different apps.</p>
       </div>
      </div>
 
      {/* Track 3  */}
      <div className="p-4 md:w-1/3 sm:w-1/2 w-full">
       <div className="border-2 hover:shadow-xl hover:shadow-gray-200 border-gray-200 bg-gray-100 shadow-[inset_0_0_2px_rgba(0,0,0,0.6)] px-4 py-6 rounded-lg">
-       <svg className="text-pink-600 w-12 h-12 mb-3 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+       <svg className="text-amber-600 w-12 h-12 mb-3 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path
          strokeLinecap="round"
          strokeLinejoin="round"
@@ -47,8 +47,8 @@ const Track = () => {
         />
        </svg>
 
-       <h2 className="title-font font-medium text-lg text-gray-900">Premium Tshirts</h2>
-       <p className="leading-relaxed">Our T-Shirts are 100% made of cotton.</p>
+       <h2 className="title-font font-medium text-lg text-gray-900">Unbeleivable Price</h2>
+       <p className="leading-relaxed">Pay always less</p>
       </div>
      </div>
     </div>

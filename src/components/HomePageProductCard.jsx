@@ -38,10 +38,10 @@ const HomePageProductCard = () => {
  }, [cartItems]);
 
  return (
-  <div className="py-2 px-4 md:px-8  bg-orange-50">
+  <div className="py-2 px-4 md:px-8 bg-orange-50">
    {/* Heading  */}
    <div className="flex w-full justify-center">
-    <h1 className="w-1/3 text-center mb-1 text-3xl font-button text-amber-500 hover:scale-x-110 transition ease-in-out duration-300 hover:text-amber-300 shadow-md ">Bestselling Products</h1>
+    <h1 className="w-1/2 text-center text-nowrap mb-1 text-2xl font-button text-amber-500 hover:scale-x-110 transition ease-in-out duration-300 hover:text-amber-300 shadow-md ">Bestselling Products</h1>
    </div>
 
    {/* main  */}

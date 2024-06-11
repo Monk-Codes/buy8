@@ -41,7 +41,7 @@ const Category = () => {
 
  return (
   <div>
-   <div className="flex flex-col bg-orange-300 ">
+   <div className="flex flex-col bg-orange-100 ">
     {/* main 1 */}
     <div className="flex overflow-x-scroll lg:justify-center hide-scroll-bar">
      {/* main 2  */}
