@@ -111,37 +111,36 @@ const CartPage = () => {
  };
  return (
   <Layout>
-   <div className="container mx-auto px-4 max-w-7xl py-2 lg:px-0 ">
-    <div className="mx-auto max-w-2xl py-8 lg:max-w-7xl">
-     <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center w-full">Shopping Cart</h1>
+   <div className="container py-2 lg:px-0 min-h-screen bg-orange-200">
+    <div className="mx-auto max-w-md py-1 lg:max-w-5xl">
+     <div className="flex flex-col items-center">
+      <h1 className="w-1/3 text-center mb-1 text-2xl font-button text-nowrap text-amber-500 hover:scale-x-110 transition ease-in-out duration-300 hover:text-amber-300 shadow-md ">Shopping Cart</h1>
+     </div>
      {cartItems.length > 0 ? (
-      <form className="items-center p-5">
-       <section aria-labelledby="cart-heading" className="rounded-lg bg-white px-3 ">
-        <h2 id="cart-heading" className="sr-only">
-         Items in your shopping cart
-        </h2>
+      <form className="items-center p-5 ">
+       <section aria-labelledby="cart-heading" className="rounded-lg px-4 py-2 backdrop-blur-sm bg-amber-100">
         <ul role="list" className="divide-y divide-gray-200">
          {cartItems.map((item, index) => {
           const { id, title, price, productImage, quantity, category } = item;
           return (
            <div key={index} className="">
-            <li className="flex py-6 sm:py-6 ">
-             <div className="flex-shrink-0">
-              <img src={productImage} alt="img" className="sm:h-38 sm:w-38 h-24 w-24 rounded-md object-contain object-center" />
+            <li className="py-2 sm:py-6 w-full ">
+             <div className=" ml-4 ">
+              <img src={productImage} alt="img" className="sm:h-38 sm:w-38 h-24 w-24 mb-2 rounded-md object-contain object-center" />
              </div>
-             <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-              <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+             <div className="ml-4 flex w-full flex-col text-wrap break-words sm:ml-6">
+              <div className="pr-9">
                <div>
-                <div className="flex justify-between">
-                 <h3 className="text-sm">
-                  <div className="font-semibold text-black">{title}</div>
+                <div className="">
+                 <h3 className="text-sm w-2/3">
+                  <div className="font-main text-amber-400">{title}</div>
                  </h3>
                 </div>
-                <div className="mt-1 flex text-sm">
+                <div className="mt-1 text-sm">
                  <p className="text-sm text-gray-500">{category}</p>
                 </div>
-                <div className="mt-1 flex items-end">
-                 <p className="text-sm font-medium text-gray-900">₹{price}</p>
+                <div className="mt-1 items-end">
+                 <p className="text-sm font-main w-2/3 text-stone-900">₹{price}</p>
                 </div>
                </div>
               </div>
@@ -169,28 +168,28 @@ const CartPage = () => {
          })}
 
          {/* Order summary */}
-         <section aria-labelledby="summary-heading" className="mt-16 rounded-md bg-white lg:col-span-4 lg:mt-0 lg:p-0">
-          <h2 id="summary-heading" className=" border-b border-gray-200 px-4 py-3 text-lg font-medium text-gray-900 sm:p-4">
+         <section aria-labelledby="summary-heading" className="mt-12 rounded-2xl bg-white lg:col-span-4 lg:mt-0 lg:p-0">
+          <h2 id="summary-heading" className=" p-4 text-lg font-medium text-gray-900 sm:p-4">
            Price Details
           </h2>
           <div>
            <dl className=" space-y-1 px-2 py-4">
             <div className="flex items-center justify-between">
              <dt className="text-sm text-gray-800">Price ({cartItemTotal} item)</dt>
-             <dd className="text-sm font-medium text-gray-900">₹ {cartTotal}</dd>
-             <dd className="text-sm font-medium text-gray-900">₹ {cartQuantity}</dd>
+             <dd className="text-sm font-main text-gray-900">₹ {cartTotal}</dd>
+             <dd className="text-sm font-main text-gray-900">x {cartQuantity}</dd>
             </div>
             <div className="flex items-center justify-between pt-4">
              <dt className="flex items-center text-sm text-gray-800">
               <span>Coupon Code</span>
              </dt>
-             <dd className="text-sm font-medium text-green-700">- FREE8</dd>
+             <dd className="text-sm font-medium text-green-400">- FREE8</dd>
             </div>
             <div className="flex items-center justify-between py-4">
              <dt className="flex text-sm text-gray-800">
               <span>Delivery Charges</span>
              </dt>
-             <dd className="text-sm font-medium text-green-700">Free</dd>
+             <dd className="text-sm font-medium text-green-400">Free</dd>
             </div>
             <div className="flex items-center justify-between border-y border-dashed py-4 ">
              <dt className="text-base font-medium text-gray-900">Total Amount</dt>

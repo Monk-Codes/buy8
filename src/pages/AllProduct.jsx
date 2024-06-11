@@ -37,7 +37,7 @@ const AllProduct = () => {
 
  return (
   <Layout>
-   <div className=" min-h-screen px-4 mt-4 md:px-8">
+   <div className=" min-h-screen px-4 py-2 md:px-8 bg-orange-200">
     {/* Heading  */}
     <div className="flex justify-center w-full">
      <h1 className="w-1/3 text-center mb-1 text-3xl font-button text-amber-500 hover:scale-x-110 transition ease-in-out duration-300 hover:text-amber-300 shadow-md ">All Products</h1>
@@ -50,8 +50,8 @@ const AllProduct = () => {
        {getAllProduct.slice(0, 8).map((item, index) => {
         const { id, title, price, productImage, category } = item;
         return (
-         <div key={index} className="px-2 mb-3 h-96 w-64 sm:w-1/2 md:w-1/3 lg:w-1/5">
-          <div className="product-card border border-gray-400 rounded-2xl overflow-hidden shadow-md cursor-pointer">
+         <div key={index} className="px-2 mb-3 h-96 w-64 sm:w-1/2 md:w-1/3 lg:w-1/5 ">
+          <div className="product-card border border-gray-400 rounded-2xl overflow-hidden shadow-md cursor-pointer  backdrop-blur-sm bg-amber-100">
            <img onClick={() => navigate(`/productinfo/${id}`)} className="h-56 w-full p-6 transition duration-300 ease-in-out transform hover:scale-105" src={productImage} alt="image" />
            <div className="p-4 transition duration-300 ease-in-out transform hover:bg-gray-200">
             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{category}</h2>
