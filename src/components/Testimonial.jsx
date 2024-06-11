@@ -3,13 +3,13 @@
 const Testimonial = () => {
  return (
   <div>
-   <section className="text-gray-600 body-font font-button mb-2">
+   <section className="text-gray-600 body-font font-button bg-amber-100">
     {/* main  */}
     <div className="container px-5 py-2 mx-auto">
      {/* Heading  */}
      <h1 className=" text-center text-3xl font-bold text-stone-900">Testimonials</h1>
      {/* para  */}
-     <h2 className=" text-center text-2xl font-semibold mb-10">
+     <h2 className=" text-center text-2xl font-semibold mb-4">
       What our <span className=" text-amber-500">customers</span> are saying
      </h2>
 
