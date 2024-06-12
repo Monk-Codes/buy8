@@ -65,8 +65,8 @@ const Login = () => {
    {loading && <Loader />}
    <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
     <div className=" px-8 md:px-16">
-     <h2 className="font-bold text-2xl text-[#002D74]">Login</h2>
-     <p className="text-xs mt-4 text-[#002D74]">If you are already a member, easily log in</p>
+     <h2 className="font-bold text-2xl text-amber-500">Login</h2>
+     <p className="text-xs mt-4 text-amber-500">If you are already a member, easily log in</p>
 
      <form className="flex flex-col gap-4">
       <input
@@ -98,7 +98,7 @@ const Login = () => {
         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
        </svg>
       </div>
-      <button type="button" className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300 cursor-pointer" onClick={userLoginFunction}>
+      <button type="button" className="bg-blue-800 rounded-xl text-white py-2 hover:scale-105 duration-300 cursor-pointer" onClick={userLoginFunction}>
        Login
       </button>
      </form>
@@ -109,7 +109,7 @@ const Login = () => {
       <hr className="border-gray-400" />
      </div>
 
-     <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
+     <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-amber-500">
       <svg className="mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="25px">
        <path
         fill="#FFC107"
@@ -122,11 +122,11 @@ const Login = () => {
       Login with Google
      </button>
 
-     <div className="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
+     <div className="mt-5 text-xs border-b border-orange-500 py-4 text-amber-500">
       <Link to={"/help"}>Forgot your password?</Link>
      </div>
 
-     <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+     <div className="mt-3 text-xs flex justify-between items-center text-amber-500">
       <p>Don't have an account?</p>
       <button className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
        <Link to={"/signup"}>SignUp</Link>
