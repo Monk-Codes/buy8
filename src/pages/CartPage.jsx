@@ -112,7 +112,7 @@ const CartPage = () => {
  return (
   <Layout>
    <div className="min-h-screen bg-orange-200">
-    <div className="p-2 lg:px-0 ">
+    <div className="p-2 lg:px-0">
      <div className="mx-auto max-w-md py-1 lg:max-w-5xl">
       <div className="flex flex-col items-center">
        <h1 className="w-1/3 text-center mb-1 text-2xl font-button text-nowrap text-amber-500 hover:scale-x-110 transition ease-in-out duration-300 hover:text-amber-300 shadow-md ">Shopping Cart</h1>
@@ -124,8 +124,8 @@ const CartPage = () => {
           {cartItems.map((item, index) => {
            const { id, title, price, productImage, quantity, category } = item;
            return (
-            <div key={index} className="">
-             <li className="py-2 sm:py-6 w-full ">
+            <div key={index}>
+             <li className="py-2 w-full ">
               <div className=" ml-4 ">
                <img src={productImage} alt="img" className="sm:h-38 sm:w-38 h-24 w-24 mb-2 rounded-md object-contain object-center" />
               </div>

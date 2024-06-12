@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MyContext from "../context/MyContext";
 import toast from "react-hot-toast";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, fireDB } from "../firebase/FirebaseConfig";
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { collection, query, where, onSnapshot, addDoc } from "firebase/firestore";
 import Loader from "../components/Loader";
 
 const Login = () => {
@@ -14,49 +14,80 @@ const Login = () => {
  // navigate
  const navigate = useNavigate();
 
- // User Signup State
+ // User Login State
  const [userLogin, setUserLogin] = useState({
   email: "",
   password: "",
  });
-
+ // EMAIL PASSWORD LOGIN
  const userLoginFunction = async () => {
   // validation
   if (userLogin.email === "" || userLogin.password === "") {
    toast.error("All Fields are required");
+   return;
   }
 
   setLoading(true);
   try {
    const users = await signInWithEmailAndPassword(auth, userLogin.email, userLogin.password);
 
-   try {
-    const q = query(collection(fireDB, "user"), where("uid", "==", users?.user?.uid));
-    const data = onSnapshot(q, (QuerySnapshot) => {
-     let user;
-     QuerySnapshot.forEach((doc) => (user = doc.data()));
-     localStorage.setItem("users", JSON.stringify(user));
-     setUserLogin({
-      email: "",
-      password: "",
-     });
-     toast.success("Login Successfully");
-     setLoading(false);
-     if (user.role === "user") {
-      navigate("/");
-     } else {
-      navigate("/admin-dashboard");
-     }
+   const q = query(collection(fireDB, "user"), where("uid", "==", users?.user?.uid));
+   const data = onSnapshot(q, (QuerySnapshot) => {
+    let user;
+    QuerySnapshot.forEach((doc) => (user = doc.data()));
+    localStorage.setItem("users", JSON.stringify(user));
+    setUserLogin({
+     email: "",
+     password: "",
     });
-    return () => data;
-   } catch (error) {
-    console.log(error);
+    toast.success("Login Successfully");
     setLoading(false);
-   }
+    if (user.role === "user") {
+     navigate("/");
+    } else {
+     navigate("/admin-dashboard");
+    }
+   });
   } catch (error) {
    console.log(error);
    setLoading(false);
    toast.error("Login Failed");
+  }
+ };
+
+ // GOOGLE LOGIN FUNCTION
+ const googleLoginFunction = async () => {
+  setLoading(true);
+  const provider = new GoogleAuthProvider();
+
+  try {
+   const result = await signInWithPopup(auth, provider);
+   const user = result.user;
+
+   // Check if user exists in Firestore
+   const q = query(collection(fireDB, "user"), where("uid", "==", user.uid));
+   const data = onSnapshot(q, async (QuerySnapshot) => {
+    let userData;
+    QuerySnapshot.forEach((doc) => (userData = doc.data()));
+
+    if (userData) {
+     localStorage.setItem("users", JSON.stringify(userData));
+     setLoading(false);
+     if (userData.role === "user") {
+      navigate("/");
+     } else {
+      navigate("/admin-dashboard");
+     }
+     toast.success("Login with Google Successfully");
+    } else {
+     toast.error("No User Found, Create a new Account");
+     setLoading(false);
+     return;
+    }
+   });
+  } catch (error) {
+   toast.error(error.message);
+   setLoading(false);
   }
  };
 
@@ -109,7 +140,7 @@ const Login = () => {
       <hr className="border-gray-400" />
      </div>
 
-     <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-amber-500">
+     <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-amber-500" onClick={googleLoginFunction}>
       <svg className="mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="25px">
        <path
         fill="#FFC107"

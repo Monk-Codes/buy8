@@ -44,17 +44,20 @@ const AddProductPage = () => {
 
  // Add Product Function
  const addProductFunction = async () => {
-  if (product.title > 4 || product.price > 1 || product.productImage === null || product.category === "" || product.description > 10 || product.quantity > 1) {
-   return toast.error("All fields are required");
+  const { title, price, productImage, category, description, quantity } = product;
+
+  // Validate all fields
+  if (title.length < 4 || price === "" || productImage === null || category === "" || description.length < 10 || quantity === "") {
+   return toast.error("All fields are required and must meet the specified criteria");
   }
 
   setLoading(true);
   const storage = getStorage();
-  const storageRef = ref(storage, `products/${product.productImage.name}`);
+  const storageRef = ref(storage, `products/${productImage.name}`);
 
   try {
    // Upload image to Firebase Storage
-   await uploadBytes(storageRef, product.productImage);
+   await uploadBytes(storageRef, productImage);
    const imageUrl = await getDownloadURL(storageRef);
 
    // Add product to Firestore
@@ -79,10 +82,10 @@ const AddProductPage = () => {
    <div className="flex justify-center items-center min-h-screen bg-orange-200">
     {loading && <Loader />}
     {/* Login Form */}
-    <div className=" bg-amber-100 p-2 border border-orange-400 rounded-xl shadow-md backdrop-blur-sm">
+    <div className="bg-amber-100 p-2 border border-orange-400 rounded-xl shadow-md backdrop-blur-sm">
      {/* Top Heading */}
      <div className="mb-5">
-      <h2 className="text-center text-2xl font-bold text-amber-500 ">Add Product</h2>
+      <h2 className="text-center text-2xl font-bold text-amber-500">Add Product</h2>
      </div>
 
      {/* Input TITLE */}
@@ -154,7 +157,9 @@ const AddProductPage = () => {
        }}
        className="w-full px-1 py-2 text-amber-300 bg-orange-50 border border-orange-200 rounded-md outline-none"
       >
-       <option disabled>Select Product Category</option>
+       <option disabled value="">
+        Select Product Category
+       </option>
        {categoryList.map((value, index) => {
         const { name } = value;
         return (

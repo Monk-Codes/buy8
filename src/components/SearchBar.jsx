@@ -23,12 +23,12 @@ const SearchBar = () => {
    {/* search drop-down  */}
    <div className=" flex justify-center">
     {search && (
-     <div className="block absolute bg-gray-200 w-96 md:w-96 lg:w-96 z-50 my-1 rounded-lg px-2 py-2">
+     <div className="block absolute bg-gray-200 w-96 md:w-96 lg:w-96 z-50 my-1 rounded-xl py-2">
       {filterSearchData.length > 0 ? (
        <>
         {filterSearchData.map((item, index) => {
          return (
-          <div key={index} className="py-2 px-2 cursor-pointer" onClick={() => navigate(`/productinfo/${item.id}`)}>
+          <div key={index} className="p-2 cursor-pointer border-b border-gray-500" onClick={() => navigate(`/productinfo/${item.id}`)}>
            <div className="flex items-center gap-2">
             <img className="w-10" src={item.productImage} alt="img" />
             {item.title}

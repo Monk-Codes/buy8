@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import MyContext from "../context/MyContext";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { Timestamp, addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { auth, fireDB } from "../firebase/FirebaseConfig";
 import Loader from "../components/Loader";
 
@@ -18,7 +18,16 @@ const Signup = () => {
   email: "",
   password: "",
   role: "user",
+  photoURL: "",
  });
+
+ // CHECK IF USER ALREADY EXISTS
+ const checkUserExists = async (email) => {
+  const userReference = collection(fireDB, "user");
+  const q = query(userReference, where("email", "==", email));
+  const querySnapshot = await getDocs(q);
+  return !querySnapshot.empty;
+ };
 
  // SIGNUP FUNCTION
  const userSignupFunction = async () => {
@@ -31,6 +40,13 @@ const Signup = () => {
   setLoading(true);
 
   try {
+   const userExists = await checkUserExists(userSignup.email);
+   if (userExists) {
+    toast.error("User already exists");
+    setLoading(false);
+    return;
+   }
+
    const users = await createUserWithEmailAndPassword(auth, userSignup.email, userSignup.password);
    // CREATE USER OBJECT
    const user = {
@@ -64,15 +80,58 @@ const Signup = () => {
   }
  };
 
+ // GOOGLE SIGNUP FUNCTION
+ const googleSignupFunction = async () => {
+  setLoading(true);
+  const provider = new GoogleAuthProvider();
+
+  try {
+   const result = await signInWithPopup(auth, provider);
+   const user = result.user;
+
+   const userExists = await checkUserExists(user.email);
+   if (userExists) {
+    toast.error("User already exists");
+    setLoading(false);
+    return;
+   }
+
+   // CREATE USER OBJECT
+   const userDoc = {
+    name: user.displayName,
+    email: user.email,
+    uid: user.uid,
+    role: "user",
+    photoURL: user.photoURL || "path/to/placeholder-image.jpg",
+    time: Timestamp.now(),
+    date: new Date().toLocaleString("en-IN", {
+     month: "short",
+     day: "2-digit",
+     year: "numeric",
+    }),
+   };
+
+   // CREATE USER INTERFACE
+   const userReference = collection(fireDB, "user");
+   await addDoc(userReference, userDoc);
+   toast.success("SignUp with Google successfully");
+   setLoading(false);
+  } catch (error) {
+   toast.error(error.message);
+   setLoading(false);
+  }
+  navigate("/login");
+ };
+
  return (
   <section className="bg-gray-700 min-h-screen flex items-center justify-center px-12">
    {loading && <Loader />}
    {/* <!-- login container --> */}
    <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl items-center py-5">
     {/* <!-- form --> */}
-    <div className=" px-8 md:px-16">
+    <div className="px-8 md:px-16">
      <h2 className="font-bold text-2xl text-amber-500">SignUp</h2>
-     <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-amber-500">
+     <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-amber-500" onClick={googleSignupFunction}>
       <svg className="mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="25px">
        <path
         fill="#FFC107"

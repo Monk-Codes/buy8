@@ -22,9 +22,9 @@ const Dialogs = ({ open, handler, children, className }) => {
  if (!open) return null;
 
  return (
-  <div className={`fixed inset-0 flex items-center justify-center z-50 ${className}`}>
-   <div className="fixed inset-0 bg-black opacity-50" onClick={handler}></div>
-   <div className="relative bg-white rounded-lg shadow-lg p-6 z-10">{children}</div>
+  <div className={`fixed inset-0 flex items-start justify-center z-50 p-5  ${className}`}>
+   <div className="fixed inset-0 bg-amber-100" onClick={handler}></div>
+   <div className="relative bg-amber-100 rounded-3xl shadow-lg z-10">{children}</div>
   </div>
  );
 };
