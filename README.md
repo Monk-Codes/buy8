@@ -1,29 +1,29 @@
-# PortFolio
-## PortFolio made using REACT JS
-- [Live Demo](https://monkcodes-dev.netlify.app/)
+# Buy8
+## E-Commerce Shopping Website made using REACT JS
+- [Live Demo](https://buy8.netlify.app/)
 <br/>
 <p align="center">
 <img src="logo.png" alt="image" width="400" height="300">
-  <a href="https://github.com/Monk-Codes/monkcodesportfolio">
+  <a href="https://github.com/Monk-Codes/buy8">
   </a>
-  <h3 align="center">PortFolio</h3>
+  <h3 align="center">Buy8</h3>
 
   <p align="center">
-    PortFolio of Monk-Codes
+    E-Commerce Application
     <br/>
     <br/>
-    <a href="https://github.com/Monk-Codes/monkcodesportfolio"><strong>PortFolio made using REACT JS</strong></a>
+    <a href="https://github.com/Monk-Codes/buy8"><strong>Application made using REACT JS | Tailwind | Firebase</strong></a>
     <br/>
     <br/>
-    <a href="https://github.com/Monk-Codes/monkcodesportfolio">View Demo</a>
+    <a href="https://github.com/Monk-Codes/buy8">View Demo</a>
     .
-    <a href="https://github.com/Monk-Codes/monkcodesportfolio/issues">Report Bug</a>
+    <a href="https://github.com/Monk-Codes/buy8/issues">Report Bug</a>
     .
-    <a href="https://github.com/Monk-Codes/monkcodesportfolio/issues">Request Feature</a>
+    <a href="https://github.com/Monk-Codes/buy8/issues">Request Feature</a>
   </p>
 </p>
 
-![Forks](https://img.shields.io/github/forks/Monk-Codes/monkcodesportfolio?style=social) ![Stargazers](https://img.shields.io/github/stars/Monk-Codes/monkcodesportfolio?style=social) 
+![Forks](https://img.shields.io/github/forks/Monk-Codes/buy8?style=social) ![Stargazers](https://img.shields.io/github/stars/Monk-Codes/buy8?style=social) 
 
 ## Table Of Contents
 
@@ -35,9 +35,17 @@
 * [Acknowledgements](#acknowledgements)
 
 ## About The Project
-![Screenshot (73)](https://github.com/Monk-Codes/monkcodesportfolio/assets/84877191/7b820ef4-dc6a-4354-b8b3-0e2f22401544)
-![Screenshot (74)](https://github.com/Monk-Codes/monkcodesportfolio/assets/84877191/ea1f62d0-1814-4539-b55f-2252acc61c39)
-![Screenshot (75)](https://github.com/Monk-Codes/monkcodesportfolio/assets/84877191/1bfb7961-24be-4722-8db7-24a936a3a65e)
+
+![Screenshot (102)](https://github.com/Monk-Codes/buy8/assets/84877191/2c243a45-5da9-4c01-9962-e58883cf279e)
+![Screenshot (103)](https://github.com/Monk-Codes/buy8/assets/84877191/48575490-6a19-46c4-9871-c4c564319d21)
+![Screenshot (104)](https://github.com/Monk-Codes/buy8/assets/84877191/9ff7e38a-51a6-4a74-8cc0-591efa253590)
+![Screenshot (105)](https://github.com/Monk-Codes/buy8/assets/84877191/0c5755a8-270d-4ab8-81b4-ea7cd1d66cd3)
+![Screenshot (106)](https://github.com/Monk-Codes/buy8/assets/84877191/9ffbe4dc-1dbd-4cf9-bd80-343d57c8deb6)
+![Screenshot (107)](https://github.com/Monk-Codes/buy8/assets/84877191/97019ade-0cc9-49d8-b6b5-22a51ed4c6af)
+![Screenshot (108)](https://github.com/Monk-Codes/buy8/assets/84877191/41797119-f835-44c4-ae9e-e93c2f14d933)
+![Screenshot (110)](https://github.com/Monk-Codes/buy8/assets/84877191/68b16dc7-dad6-453a-b58a-b8bf2ee4db5d)
+![Screenshot (111)](https://github.com/Monk-Codes/buy8/assets/84877191/62d6385b-03ce-4a1e-af8c-a5cad46dd672)
+![Screenshot (112)](https://github.com/Monk-Codes/buy8/assets/84877191/b5444f99-b733-4dc6-bffe-80868408c108)
 
     
 PortFolio of Monk-Codes
@@ -54,7 +62,7 @@ A list of commonly used resources that I find helpful are listed in the acknowle
 
 ## Built With
 
-HTML | CSS | REACT | VITE
+HTML | TAILWIND | REACT | VITE | FIREBASE
 
 ## Getting Started
 
