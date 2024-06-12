@@ -47,9 +47,6 @@
 ![Screenshot (111)](https://github.com/Monk-Codes/buy8/assets/84877191/62d6385b-03ce-4a1e-af8c-a5cad46dd672)
 ![Screenshot (112)](https://github.com/Monk-Codes/buy8/assets/84877191/b5444f99-b733-4dc6-bffe-80868408c108)
 
-    
-PortFolio of Monk-Codes
-
 Here's why:
 
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
