@@ -35,7 +35,7 @@
 * [Acknowledgements](#acknowledgements)
 
 ## About The Project
-
+![Screenshot (101)](https://github.com/Monk-Codes/buy8/assets/84877191/b240d53f-6628-4a9b-ba95-ce80f49dc5c6)
 ![Screenshot (102)](https://github.com/Monk-Codes/buy8/assets/84877191/2c243a45-5da9-4c01-9962-e58883cf279e)
 ![Screenshot (103)](https://github.com/Monk-Codes/buy8/assets/84877191/48575490-6a19-46c4-9871-c4c564319d21)
 ![Screenshot (104)](https://github.com/Monk-Codes/buy8/assets/84877191/9ff7e38a-51a6-4a74-8cc0-591efa253590)
