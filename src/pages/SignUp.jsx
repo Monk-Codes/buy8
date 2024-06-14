@@ -54,6 +54,7 @@ const Signup = () => {
     email: users.user.email,
     uid: users.user.uid,
     role: userSignup.role,
+    photoURL: "path/to/default-image.jpg",
     time: Timestamp.now(),
     date: new Date().toLocaleString("en-IN", {
      month: "short",
@@ -61,10 +62,14 @@ const Signup = () => {
      year: "numeric",
     }),
    };
+
    // CREATE USER INTERFACE
    const userReference = collection(fireDB, "user");
    // ADD USER DETAIL
    await addDoc(userReference, user);
+
+   // Store user in local storage
+   localStorage.setItem("users", JSON.stringify(user));
 
    setUserSignup({
     name: "",
@@ -114,6 +119,10 @@ const Signup = () => {
    // CREATE USER INTERFACE
    const userReference = collection(fireDB, "user");
    await addDoc(userReference, userDoc);
+
+   // Store user in local storage
+   localStorage.setItem("users", JSON.stringify(userDoc));
+
    toast.success("SignUp with Google successfully");
    setLoading(false);
   } catch (error) {

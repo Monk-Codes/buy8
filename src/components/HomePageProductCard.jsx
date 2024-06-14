@@ -54,9 +54,9 @@ const HomePageProductCard = () => {
         <div key={index} className="px-2 mb-3 w-64 h-96 sm:w-1/2 md:w-1/3 lg:w-1/5">
          <div className="product-card border border-gray-400 rounded-2xl overflow-hidden shadow-md cursor-pointer  backdrop-blur-sm bg-amber-100">
           <img className="h-56 w-full p-6 transition duration-300 ease-in-out transform hover:scale-105" src={productImage} alt="product" onClick={() => navigate(`/productinfo/${id}`)} />
-          <div className="p-4 transition duration-300 ease-in-out transform hover:bg-gray-200">
+          <div className="p-4 transition duration-300 ease-in-out transform hover:bg-gray-200 ">
            <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{category}</h2>
-           <h1 className="title-font text-lg font-medium text-gray-700 mb-3">{title.substring(0, 25)}</h1>
+           <h1 className="title-font text-md font-medium text-gray-700 mb-3">{title.substring(0, 20)}</h1>
            <h1 className="title-font text-lg font-main text-amber-500 mb-3">₹{price}</h1>
            <div className="flex justify-center">
             {cartItems.some((e) => e.id === item.id) ? (

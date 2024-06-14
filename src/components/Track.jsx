@@ -31,7 +31,7 @@ const Track = () => {
         />
        </svg>
 
-       <h2 className="title-font font-medium text-lg text-gray-900">Wide Varaity of products.</h2>
+       <h2 className="title-font font-medium text-lg text-gray-900">Wide Variety of products.</h2>
        <p className="leading-relaxed">No need to switch to different apps.</p>
       </div>
      </div>
@@ -47,7 +47,7 @@ const Track = () => {
         />
        </svg>
 
-       <h2 className="title-font font-medium text-lg text-gray-900">Unbeleivable Price</h2>
+       <h2 className="title-font font-medium text-lg text-gray-900">Unbelievable Prices</h2>
        <p className="leading-relaxed">Pay always less</p>
       </div>
      </div>

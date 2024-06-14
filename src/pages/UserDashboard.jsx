@@ -1,13 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import MyContext from "../context/MyContext";
 import { Loader } from "lucide-react";
 
 const UserDashboard = () => {
- const user = JSON.parse(localStorage.getItem("users"));
+ const [user, setUser] = useState(null);
+
+ useEffect(() => {
+  const storedUser = JSON.parse(localStorage.getItem("users"));
+  setUser(storedUser);
+ }, []);
 
  const context = useContext(MyContext);
  const { loading, getAllOrder } = context;
+
+ useEffect(() => {
+  if (user) {
+   console.log("User object:", user);
+  }
+ }, [user]);
 
  return (
   <Layout>
@@ -18,7 +29,15 @@ const UserDashboard = () => {
      <div className="bg-orange-100 py-5 rounded-2xl border border-orange-400">
       {/* image */}
       <div className="flex justify-center">
-       <img src={user?.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/128/2202/2202112.png"} alt="User profile" className="rounded-full w-24 h-24 object-cover" />
+       <img
+        src={user?.photoURL ? user.photoURL : "https://cdn-icons-png.flaticon.com/128/2202/2202112.png"}
+        alt="User profile"
+        className="rounded-full w-24 h-24 object-cover"
+        onError={(e) => {
+         e.target.onerror = null; // Prevent infinite loop in case of default image error
+         e.target.src = "https://cdn-icons-png.flaticon.com/128/2202/2202112.png";
+        }}
+       />
       </div>
       {/* text */}
       <div className="text-left text-lg p-2 font-main text-amber-600">
